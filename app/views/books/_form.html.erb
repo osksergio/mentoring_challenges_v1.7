@@ -6,8 +6,12 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :published_at %>
-    <%= f.association :author %>
+
+    <%= f.label :author_id %>
+    <%= f.collection_select(:author_id, Author.all, :id, :description, prompt: true) %>
   </div>
+
+  <br>
 
   <div class="form-actions">
     <%= f.button :submit %>
