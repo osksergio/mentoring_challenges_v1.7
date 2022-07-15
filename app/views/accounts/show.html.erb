@@ -7,7 +7,7 @@
 
 <p>
   <strong>Supplier:</strong>
-  <%= @account.supplier_id %>
+  <%= "#{@account.supplier_id} - #{@account.supplier.description} "  %>
 </p>
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
