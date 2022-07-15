@@ -1,24 +1,29 @@
-# README
+#Mentoring Challenges (v1.7)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is summarized in some challenges, proposed by the DesenvolvimentondoMe mentorship. 
 
-Things you may want to cover:
+The objective of this training is the search for the personal and professional evolution of a dev.
 
-* Ruby version
+---
 
-* System dependencies
+Some technical requirements of the project:
 
+* Ruby version: 3.1.2
+* Rails version: 6.1.6
+* System Linux (Ubuntu 20.4 Base)
 * Configuration
+* Database creation: SQLite
 
-* Database creation
+P.S.: As the development of the challenge tasks progresses, this README file will be enriched with more information and technical data.
 
-* Database initialization
+----
 
-* How to run the test suite
+#Desafio 1: Implement the C.R.U.D.s
+- [x] Authors << Books
+- [x] Suppliers << Accounts
+- [ ] Assemblies << Assempblies_Parts >> Parts
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
-
-* ...
+<br>Mentor / Leader: <strong>Marco Castro</strong>
+<br>Studant / Author: <strong>Sergio Oseko (osk.sergio@gmail.com)</strong>
