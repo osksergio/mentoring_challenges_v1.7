@@ -4,6 +4,13 @@ class AccountsController < ApplicationController
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.all
+
+    # filter by ID
+    @accounts = Account.where("id = #{params[:id]}") if params[:id]
+    # filter by Number Account
+    @accounts = Account.where("account_number = #{params[:account_number]}") if params[:account_number]
+    # filter by Supplier ID
+    @accounts = Account.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
   end
 
   # GET /accounts/1 or /accounts/1.json
