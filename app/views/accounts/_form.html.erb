@@ -5,8 +5,11 @@
 
   <div class="form-inputs">
     <%= f.input :account_number %>
-    <%= f.association :supplier %>
+    <%= f.label :supplier_id %>
+    <%= f.collection_select(:supplier_id, Supplier.all, :id, :description, prompt: true) %>
   </div>
+
+  <br>
 
   <div class="form-actions">
     <%= f.button :submit %>
