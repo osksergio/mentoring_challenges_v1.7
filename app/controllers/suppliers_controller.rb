@@ -8,7 +8,7 @@ class SuppliersController < ApplicationController
     # filter by ID
     @suppliers = Supplier.where("id = #{params[:id]}") if params[:id]
     # filter by Description (supplier's name)
-    @suppliers = Supplier.where("id = #{params[:id]}") if params[:id]
+    @suppliers = Supplier.where("id = #{params[:description]}") if params[:description]
   end
 
   # GET /suppliers/1 or /suppliers/1.json
