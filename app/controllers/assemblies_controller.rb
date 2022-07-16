@@ -4,6 +4,11 @@ class AssembliesController < ApplicationController
   # GET /assemblies or /assemblies.json
   def index
     @assemblies = Assembly.all
+
+    # filter by ID
+    @assemblies = Assembly.where("id = #{params[:id]}") if params[:id]
+    # filter by Description
+    @assemblies = Assembly.where("description = #{params[:description]}") if params[:description]
   end
 
   # GET /assemblies/1 or /assemblies/1.json
