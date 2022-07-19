@@ -11,6 +11,8 @@ class PartsController < ApplicationController
     @parts = Part.where("description = #{params[:description]}") if params[:description]
     # filter by Part Number
     @parts = Part.where("part_number = #{params[:part_number]}") if params[:part_number]
+    # filter by Supplier ID
+    @parts = Part.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
   end
 
   # GET /parts/1 or /parts/1.json
@@ -72,6 +74,6 @@ class PartsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def part_params
-      params.require(:part).permit(:description, :part_number)
+      params.require(:part).permit(:description, :part_number, :supplier_id)
     end
 end
