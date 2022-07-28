@@ -95,8 +95,50 @@ RSpec.describe "/books", type: :request do
         expect(response).to be_truthy
       end
     end
-
   end
 
+  describe "PATCH /update" do
+    context "with valid parameters" do
+      let(:new_attributes) do
+        {
+          title: 'O Expresso do Oriente',
+          published_at: :current_date,
+          author_id: 1
+        }
+      end
 
+      it "updates the requested book" do
+        Author.create! params_author
+        book = Book.create! valid_attributes
+        patch book_url(book), params: { book: new_attributes }
+        book.reload
+        expect(book.title).to eq("O Expresso do Oriente")
+      end
+
+      it 'redirects to the book' do
+        Author.create! params_author
+        book = Book.create! valid_attributes
+        patch book_url(book), params: { book: new_attributes }
+        book.reload
+        expect(response).to redirect_to(book_url(book))
+      end
+    end
+  end
+
+  describe "DELETE /destroy" do
+    it "destroys the requested bood" do
+      Author.create! params_author
+      book = Book.create! valid_attributes
+      expect {
+        delete book_url(book)
+      }.to change(Book, :count).by(-1)
+    end
+
+    it "redirects to the books list" do
+      Author.create! params_author
+      book = Book.create! valid_attributes
+      delete book_url(book)
+      expect(response).to redirect_to(books_url)
+    end
+  end
 end
