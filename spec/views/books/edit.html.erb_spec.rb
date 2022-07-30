@@ -2,16 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "books/edit", type: :view do
   before(:each) do
-    #@author = assign(:author, Author.create!( description: "Agatha Christie" ))
-
-    @author = FactoryBot.create(:author)
-
-    @book = FactoryBot.create(:book)
-
-    #@book = assign(:book, Book.create!(
-    #  title: "O Assassinato no Expresso Oriente",
-    #  author_id: 1
-    #))
+    @book = assign(:book, Book.create!(
+      title: "Clean Code",
+      published_at: "2022-01-01",
+      author: 1
+    ))
   end
 
   it "renders the edit book form" do

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :author do
-    description { "MyString" }
+    description { "Agatha Christie" }
   end
 end
