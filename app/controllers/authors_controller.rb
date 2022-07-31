@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: %i[ show edit update destroy ]
-  skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token # utilizado para não trabalhar com autenticação dentro do Postman!
 
   # GET /authors or /authors.json
   def index
