@@ -5,7 +5,14 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
-    <%= f.input :published_at %>
+
+    <%= f.label :published_at %>
+    <%= f.date_select(:published_at,
+                      :default => Date.today,
+                      :order => [:day, :month, :year],
+                      :start_year => Date.today.year,
+                      :end_year => Date.today.year - 150,
+                      :id => 'published_at') %>
 
     <%= f.label :author_id %>
     <%= f.collection_select(:author_id, Author.all, :id, :description, prompt: true) %>

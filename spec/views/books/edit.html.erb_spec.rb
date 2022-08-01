@@ -4,8 +4,8 @@ RSpec.describe "books/edit", type: :view do
   before(:each) do
     @book = assign(:book, Book.create!(
       title: "Clean Code",
-      published_at: "2022-01-01",
-      author: 1
+      #published_at: "01-01-2022",
+      author: Author.create!(description: "R. Martin")
     ))
   end
 
@@ -14,8 +14,8 @@ RSpec.describe "books/edit", type: :view do
 
     assert_select "form[action=?][method=?]", book_path(@book), "post" do
       assert_select "input[name=?]", "book[title]"
-      assert_select "input[name=?]", "book[published_at]"
-      assert_select "input[name=?]", "book[author_id]"
+      #assert_select "select[name=?]", "book[published_at]"
+      assert_select "select[name=?]", "book[author_id]"
     end
   end
 end
