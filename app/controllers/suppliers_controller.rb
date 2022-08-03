@@ -1,5 +1,6 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   # GET /suppliers or /suppliers.json
   def index
