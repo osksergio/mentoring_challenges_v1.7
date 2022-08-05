@@ -55,11 +55,14 @@ class AuthorsController < ApplicationController
 
   # DELETE /authors/1 or /authors/1.json
   def destroy
+    id_deleted = params[:id]
+
     @author.destroy
 
     respond_to do |format|
       format.html { redirect_to authors_url, notice: "Author was successfully destroyed." }
-      format.json { head :no_content }
+      format.json { render json: { message: "Author was successfully destroyed.",
+                                   message_id: "Author deleted: #{id_deleted}" }, status: :ok }
     end
   end
 
