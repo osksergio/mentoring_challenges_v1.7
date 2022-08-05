@@ -7,9 +7,11 @@ class AuthorsController < ApplicationController
     @authors = Author.all
 
     # filter by ID
-    @authors = Author.where("id = #{params[:id]}") if params[:id]
+    #@authors = Author.where("id = #{params[:id]}") if params[:id]
+    @authors = @authors.where("id = #{params[:id]}") if params[:id]
     # filter by Description (full name)
-    @authors = Author.where("description = #{params[:description]}") if params[:description]
+    #@authors = Author.where("description = #{params[:description]}") if params[:description]
+    @authors = @authors.where("description = #{params[:description]}") if params[:description]
   end
 
   # GET /authors/1 or /authors/1.json
