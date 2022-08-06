@@ -6,9 +6,11 @@ class AssembliesController < ApplicationController
     @assemblies = Assembly.all
 
     # filter by ID
-    @assemblies = Assembly.where("id = #{params[:id]}") if params[:id]
+    #@assemblies = Assembly.where("id = #{params[:id]}") if params[:id]
+    @assemblies = @assemblies.where("id = #{params[:id]}") if params[:id]
     # filter by Description
-    @assemblies = Assembly.where("description = #{params[:description]}") if params[:description]
+    #@assemblies = Assembly.where("description = #{params[:description]}") if params[:description]
+    @assemblies = @assemblies.where("description = #{params[:description]}") if params[:description]
   end
 
   # GET /assemblies/1 or /assemblies/1.json
@@ -54,11 +56,14 @@ class AssembliesController < ApplicationController
 
   # DELETE /assemblies/1 or /assemblies/1.json
   def destroy
+    id_deleted = params[:id]
+
     @assembly.destroy
 
     respond_to do |format|
       format.html { redirect_to assemblies_url, notice: "Assembly was successfully destroyed." }
-      format.json { head :no_content }
+      format.json { render json: { first_message: "Assembly was successfully destroyed.",
+                                   second_message: "Assembly deleted: #{id_deleted}"}, status: :ok }
     end
   end
 
