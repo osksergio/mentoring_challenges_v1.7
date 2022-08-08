@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Account number</th>
+      <th>Digit</th>
       <th>Supplier</th>
       <th colspan="3"></th>
     </tr>
@@ -15,6 +16,7 @@
     <% @accounts.each do |account| %>
       <tr>
         <td><%= account.account_number %></td>
+        <td><%= account.digit %></td>
         <td><%= "#{account.supplier_id} - #{account.supplier.description}" %></td>
         <td><%= link_to 'Show', account %></td>
         <td><%= link_to 'Edit', edit_account_path(account) %></td>
