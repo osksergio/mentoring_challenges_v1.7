@@ -1,14 +1,17 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   # GET /suppliers or /suppliers.json
   def index
     @suppliers = Supplier.all
 
     # filter by ID
-    @suppliers = Supplier.where("id = #{params[:id]}") if params[:id]
+    #@suppliers = Supplier.where("id = #{params[:id]}") if params[:id]
+    @suppliers = @suppliers.where("id = #{params[:id]}") if params[:id]
     # filter by Description (supplier's name)
-    @suppliers = Supplier.where("id = #{params[:description]}") if params[:description]
+    #@suppliers = Supplier.where("id = #{params[:description]}") if params[:description]
+    @suppliers = @suppliers.where("id = #{params[:description]}") if params[:description]
   end
 
   # GET /suppliers/1 or /suppliers/1.json
@@ -54,11 +57,14 @@ class SuppliersController < ApplicationController
 
   # DELETE /suppliers/1 or /suppliers/1.json
   def destroy
+    id_deleted = params[:id]
+
     @supplier.destroy
 
     respond_to do |format|
       format.html { redirect_to suppliers_url, notice: "Supplier was successfully destroyed." }
-      format.json { head :no_content }
+      format.json { render json: { first_message: "Supplier was successfully destroyed",
+                                   second_message: "Supplier deleted: id #{id_deleted}"}, status: :ok }
     end
   end
 
@@ -70,6 +76,6 @@ class SuppliersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def supplier_params
-      params.require(:supplier).permit(:description)
+      params.require(:supplier).permit(:description, :cnpj)
     end
 end

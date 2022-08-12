@@ -1,16 +1,20 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.all
 
     # filter by ID
-    @accounts = Account.where("id = #{params[:id]}") if params[:id]
+    #@accounts = Account.where("id = #{params[:id]}") if params[:id]
+    @accounts = @accounts.where("id = #{params[:id]}") if params[:id]
     # filter by Number Account
-    @accounts = Account.where("account_number = #{params[:account_number]}") if params[:account_number]
+    #@accounts = Account.where("account_number = #{params[:account_number]}") if params[:account_number]
+    @accounts = @accounts.where("account_number = #{params[:account_number]}") if params[:account_number]
     # filter by Supplier ID
-    @accounts = Account.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
+    #@accounts = Account.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
+    @accounts = @accounts.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
   end
 
   # GET /accounts/1 or /accounts/1.json
@@ -56,11 +60,14 @@ class AccountsController < ApplicationController
 
   # DELETE /accounts/1 or /accounts/1.json
   def destroy
+    id_deleted = params[:id]
+
     @account.destroy
 
     respond_to do |format|
       format.html { redirect_to accounts_url, notice: "Account was successfully destroyed." }
-      format.json { head :no_content }
+      format.json { render json: { first_message: "Account was successfully destroyed.",
+                                   second_message: "Account deleted: #{id_deleted}"}, status: :ok }
     end
   end
 
@@ -72,6 +79,6 @@ class AccountsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def account_params
-      params.require(:account).permit(:account_number, :supplier_id)
+      params.require(:account).permit(:account_number, :supplier_id, :digit)
     end
 end

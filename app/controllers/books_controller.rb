@@ -1,14 +1,19 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   # GET /books or /books.json
   def index
     @books = Book.all
 
     # filter by ID
-    @books = Book.where("id = #{params[:id]}") if params[:id]
+    #@books = Book.where("id = #{params[:id]}") if params[:id]
+    @books = @books.where("id = #{params[:id]}") if params[:id]
     # filter by Title
-    @books = Book.where("title = #{params[:title]}") if params[:title]
+    #@books = Book.where("title = #{params[:title]}") if params[:title]
+    @books = @books.where("title = #{params[:title]}") if params[:title]
+    # filter by ISBN
+    @books = @books.where("isbn = #{params[:isbn]}") if params[:isbn]
   end
 
   # GET /books/1 or /books/1.json
@@ -54,11 +59,14 @@ class BooksController < ApplicationController
 
   # DELETE /books/1 or /books/1.json
   def destroy
+    id_deleted = params[:id]
+
     @book.destroy
 
     respond_to do |format|
       format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
-      format.json { head :no_content }
+      format.json { render json: { first_message: "Book was successfully destroyed.",
+                                   second_message:"Book deleted: #{id_deleted}"}, status: :ok }
     end
   end
 
@@ -70,6 +78,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :published_at, :author_id)
+      params.require(:book).permit(:title, :published_at, :author_id, :isbn)
     end
 end

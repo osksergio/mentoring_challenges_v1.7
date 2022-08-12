@@ -1,18 +1,23 @@
 class PartsController < ApplicationController
   before_action :set_part, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
 
   # GET /parts or /parts.json
   def index
     @parts = Part.all
 
     # filter by ID
-    @parts = Part.where("id = #{params[:id]}") if params[:id]
+    #@parts = Part.where("id = #{params[:id]}") if params[:id]
+    @parts = @parts.where("id = #{params[:id]}") if params[:id]
     # filter by Description
-    @parts = Part.where("description = #{params[:description]}") if params[:description]
+    #@parts = Part.where("description = #{params[:description]}") if params[:description]
+    @parts = @parts.where("description = #{params[:description]}") if params[:description]
     # filter by Part Number
-    @parts = Part.where("part_number = #{params[:part_number]}") if params[:part_number]
+    #@parts = Part.where("part_number = #{params[:part_number]}") if params[:part_number]
+    @parts = @parts.where("part_number = #{params[:part_number]}") if params[:part_number]
     # filter by Supplier ID
-    @parts = Part.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
+    #@parts = Part.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
+    @parts = @parts.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
   end
 
   # GET /parts/1 or /parts/1.json
@@ -58,11 +63,14 @@ class PartsController < ApplicationController
 
   # DELETE /parts/1 or /parts/1.json
   def destroy
+    id_deleted = params[:id]
+
     @part.destroy
 
     respond_to do |format|
       format.html { redirect_to parts_url, notice: "Part was successfully destroyed." }
-      format.json { head :no_content }
+      format.json { render json: { first_message: "Part was successfully destroyed.",
+                                   second_message: "Part deleted: id #{id_deleted}"}, status: :ok }
     end
   end
 
