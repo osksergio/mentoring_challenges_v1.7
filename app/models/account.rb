@@ -2,14 +2,17 @@ class Account < ApplicationRecord
   belongs_to :supplier
   validates :account_number, presence: true
   validates :account_number, uniqueness: true
-  validate :digit_is_valid?
+  validate :account_digit_is_valid?
 end
 
-def digit_is_valid?
-  # utilizada a gem 'isbn' para validação [https://github.com/tkersey/isbn  ]
-  errors.add(:digit, "Dígito verificador inválido! Por favor, verifique os dados.") unless check_digit(:account_number, :digit)
+def account_digit_is_valid?
+  is_valid = CHECKDIG::CheckAccountDigit.new
+  result = is_valid.check_digit(:account_number, :digit)
+  errors.add(:digit, "Dígito verificador inválido! Por favor, verifique os dados.") unless result
+  #errors.add(:digit, "Dígito verificador inválido! Por favor, verifique os dados.") unless CHECKDIG.check_digit(:account_number, :digit)
 end
 
+=begin
 def check_digit(p_account, p_dig)
   range = 0..( p_account.length() - 1 )
   p_account = p_account.reverse
@@ -28,3 +31,4 @@ def check_digit(p_account, p_dig)
     return false
   end
 end
+=end
