@@ -5,7 +5,7 @@ module CHECKDIG
       j = 0
       sum_product = 0
 
-      while i != 1
+      while i > 1
         sum_product += p_account[j].to_i * i
         i -= 1
         j += 1
@@ -18,7 +18,8 @@ module CHECKDIG
       sum_product = (sum_product * 10)
       digit = sum_product % 11
 
-      if p_dig == digit
+      #if p_dig == digit
+      if p_dig == digit.to_s
         return true
       else
         return false
