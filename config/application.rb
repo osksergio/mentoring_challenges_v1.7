@@ -21,6 +21,8 @@ module MentoringChallengesV17
       g.factory_bot dir: "spec/factories"
     end
 
+    require 'account_digit'
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
