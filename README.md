@@ -57,7 +57,7 @@ P.S.: As the development of the challenge tasks progresses, this README file wil
 ###4.2. Filtrar
   - [X] Fornecedor por nome
   - [ ] Fornecedor por número da conta em Conta
-  - [ ] Livros por título
+  - [X] Livros por título
   - [ ] Livros por nome em Autor
   - [ ] Montagem por nome em Peça
   - [ ] Fornecedor por nome do Autor
