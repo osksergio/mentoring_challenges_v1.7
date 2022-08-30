@@ -4,16 +4,10 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.all
-
-    # filter by ID
-    #@books = Book.where("id = #{params[:id]}") if params[:id]
-    @books = @books.where("id = #{params[:id]}") if params[:id]
     # filter by Title
-    #@books = Book.where("title = #{params[:title]}") if params[:title]
-    @books = @books.where("title = #{params[:title]}") if params[:title]
-    # filter by ISBN
-    @books = @books.where("isbn = #{params[:isbn]}") if params[:isbn]
+    @books = Book.where("title like ?", "%#{params[:search]}%") if params[:search]
+    # all...
+    @books = Book.all unless params[:search]
   end
 
   # GET /books/1 or /books/1.json
