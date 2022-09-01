@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <%= form_tag(books_path, method: :get) do %>
+  <%= label_tag 'label_title', 'Title' %>
+  <%= radio_button_tag 'search_type', 'book_title', true %>
+  <%= label_tag 'label_author_name', 'Author' %>
+  <%= radio_button_tag 'search_type', 'author_name' %>
   <%= text_field_tag 'search', nil, placeholder: 'Digite o título do livro...' %>
   <%= submit_tag "Filtrar" %>
 <% end %>
