@@ -19,47 +19,47 @@ P.S.: As the development of the challenge tasks progresses, this README file wil
 ----
 
 ### 1 - Implement the C.R.U.D.s
-- [X] Cadastrar Autores
-- [X] Cadastrar Livros vinculando com Autor
-- [X] Cadastrar Fornecedores com uma Conta
-- [X] Cadastrar Peças vinculando com Fornecedor
+- [x] Cadastrar Autores
+- [x] Cadastrar Livros vinculando com Autor
+- [x] Cadastrar Fornecedores com uma Conta
+- [x] Cadastrar Peças vinculando com Fornecedor
 - [ ] Cadastrar Montagens com várias Peças e vinculando com Livro
 
 
 ### 2 - APIs
-- [X] Cadastrar Autores
-- [X] Cadastrar Livros vinculando com Autor
-- [X] Cadastrar Fornecedores com uma Conta
-- [X] Cadastrar Peças vinculando com Fornecedor
+- [x] Cadastrar Autores
+- [x] Cadastrar Livros vinculando com Autor
+- [x] Cadastrar Fornecedores com uma Conta
+- [x] Cadastrar Peças vinculando com Fornecedor
 - [ ] Cadastrar Montagens com várias Peças e vinculando com Livro
 
 
 ### 3. Roles (Regras)
 - ### Alterar
-    - [X] Adicionar campo CNPJ em Fornecedor
-    - [X] Adicionar campo Dígito Verificador em Conta
-    - [X] Adicionar campo ISBN em Livro
-    - [X] Adicionar campo CPF em Autor
+    - [x] Adicionar campo CNPJ em Fornecedor
+    - [x] Adicionar campo Dígito Verificador em Conta
+    - [x] Adicionar campo ISBN em Livro
+    - [x] Adicionar campo CPF em Autor
 
 - ### Calcular
-    - [X] Dígito Verificador em Conta (pesquisar como calcular esse dígito verificador)
+    - [x] Dígito Verificador em Conta (pesquisar como calcular esse dígito verificador)
 
 - ### Validar
-    - [X] CNPJ em Fornecedor
-    - [X] ISBN em Livro
-    - [X] CPF em Autor
+    - [x] CNPJ em Fornecedor
+    - [x] ISBN em Livro
+    - [x] CPF em Autor
 
 
 ### 4. Filtros
 - ### Adicionar
-    - [X] Campo título em Livro
-    - [X] Campo nome em Peça
+    - [x] Campo título em Livro
+    - [x] Campo nome em Peça
 
 - ### Filtrar
-    - [X] Fornecedor por nome
+    - [x] Fornecedor por nome
     - [ ] Fornecedor por número da conta em Conta
-    - [X] Livros por título
-    - [ ] Livros por nome em Autor
+    - [x] Livros por título
+    - [x] Livros por nome em Autor
     - [ ] Montagem por nome em Peça
     - [ ] Fornecedor por nome do Autor
 
