@@ -5,7 +5,9 @@ class SuppliersController < ApplicationController
   # GET /suppliers or /suppliers.json
   def index
     # filter by Description (supplier's name)
-    @suppliers = Supplier.where("description like ?", "%#{params[:search]}%") if params[:search]
+    @suppliers = Supplier.by_supplier_name(params[:search]) if (params[:search]) and (params[:search_type] == 'name')
+    # filter by Account Number (in account)
+    @suppliers = Supplier.by_account_number(params[:search]) if (params[:search]) and (params[:search_type] == 'account')
     # all suppliers
     @suppliers = Supplier.all unless params[:search]
   end
