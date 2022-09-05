@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Author data:</h1>
+
+<p>
+  <strong>Id:</strong>
+  <%= @author.id %>
+</p>
+
 <p>
   <strong>Description:</strong>
   <%= @author.description %>
@@ -9,6 +16,40 @@
   <strong>CPF:</strong>
   <%= @author.cpf %>
 </p>
+
+<hr>
+
+<h3>Author's books:</h3>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Published at</th>
+    <th>ISBN</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @books.each do |book| %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.published_at %></td>
+      <td><%= book.isbn %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+
+<p>
+  <strong>Number of published books:</strong>
+  <%= @books.count %>
+</p>
+
+<br>
 
 <%= link_to 'Edit', edit_author_path(@author) %> |
 <%= link_to 'Back', authors_path %>
