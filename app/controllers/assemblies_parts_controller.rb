@@ -1,2 +1,0 @@
-class AssembliesPartsController < ApplicationController
-end
