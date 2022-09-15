@@ -4,14 +4,12 @@ class SuppliersController < ApplicationController
 
   # GET /suppliers or /suppliers.json
   def index
-    @suppliers = Supplier.all
-
-    # filter by ID
-    #@suppliers = Supplier.where("id = #{params[:id]}") if params[:id]
-    @suppliers = @suppliers.where("id = #{params[:id]}") if params[:id]
     # filter by Description (supplier's name)
-    #@suppliers = Supplier.where("id = #{params[:description]}") if params[:description]
-    @suppliers = @suppliers.where("id = #{params[:description]}") if params[:description]
+    @suppliers = Supplier.by_supplier_name(params[:search]) if (params[:search]) and (params[:search_type] == 'name')
+    # filter by Account Number (in account)
+    @suppliers = Supplier.by_account_number(params[:search]) if (params[:search]) and (params[:search_type] == 'account')
+    # all suppliers
+    @suppliers = Supplier.all unless params[:search]
   end
 
   # GET /suppliers/1 or /suppliers/1.json

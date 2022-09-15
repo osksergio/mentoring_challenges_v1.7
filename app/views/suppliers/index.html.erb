@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<%= form_tag( suppliers_path, method: :get ) do %>
+  <p>
+    Filtrar por:
+    <%= radio_button_tag 'search_type', 'name', true %>
+    Nome
+    <%= radio_button_tag 'search_type', 'account' %>
+    Conta
+    <%= text_field_tag 'search', nil, placeholder: 'Digite o texto...' %>
+    <%= submit_tag "Filtrar" %>
+  </p>
+<% end %>
+
 <h1>Suppliers</h1>
 
 <table>

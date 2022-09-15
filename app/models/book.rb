@@ -3,8 +3,16 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :title, length: { minimum: 3, maximum: 100 }
   validate :isbn_is_valid?
-end
 
+  scope :search, ->(query) { where("title like ?", "%#{query}%") }
+  scope :by_author_name, ->(query) { joins(:author).where("LOWER(authors.description) LIKE ?", "%#{query.downcase}%") }
+
+  # usando a busca através de um método da classe
+  # código substituído pelo "scope" (conforme as linhas acima)
+  #def self.search(query)
+  #  where("title like ?", "%#{query}%")
+  #end
+end
 
 def isbn_is_valid?
   # utilizada a gem 'isbn' para validação [https://github.com/tkersey/isbn  ]

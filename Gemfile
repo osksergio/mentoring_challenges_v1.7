@@ -15,6 +15,7 @@ gem 'net-smtp', '~> 0.3.1'
 gem 'simple_form'
 gem "cpf_cnpj"
 gem 'isbn'
+gem 'prawn-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

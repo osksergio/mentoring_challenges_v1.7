@@ -4,6 +4,9 @@ class Supplier < ApplicationRecord
   validates :description, presence: true
   validates :description, length: { minimum: 3, maximum: 60 }
   validate :cnpj_is_valid?
+
+  scope :by_supplier_name, ->(query) { where("LOWER(description) LIKE ?", "%#{query}%") }
+  scope :by_account_number, ->(query) { joins(:account).where("LOWER(accounts.account_number) LIKE ?", "%#{query}%") }
 end
 
 private
