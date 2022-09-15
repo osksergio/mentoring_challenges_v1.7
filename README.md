@@ -65,7 +65,7 @@ Alguns requisitos técnicos do projeto:
 - ### Adicionar
   - [x] Campo valor em Peça
 - ### Relatório
-  - [ ] Autor (com todas as informações com seu Livros (com todas as informações) e o total de Livros publicado
+  - [x] Autor (com todas as informações com seu Livros (com todas as informações) e o total de Livros publicado
   - [ ] Fornecedor (com todas as informações) com todos os autores (com todas as informações) e livros (com todas as informações)
   - [ ] Livro com a montagem (com todas as informações) com suas peças (com todas as  informações), o total de peças e o custo total da montagem
 ---
