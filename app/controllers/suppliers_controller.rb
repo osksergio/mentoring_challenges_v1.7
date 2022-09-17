@@ -4,11 +4,8 @@ class SuppliersController < ApplicationController
 
   # GET /suppliers or /suppliers.json
   def index
-    # filter by Description (supplier's name)
     @suppliers = Supplier.by_supplier_name(params[:search]) if (params[:search]) and (params[:search_type] == 'name')
-    # filter by Account Number (in account)
     @suppliers = Supplier.by_account_number(params[:search]) if (params[:search]) and (params[:search_type] == 'account')
-    # all suppliers
     @suppliers = Supplier.all unless params[:search]
   end
 
@@ -67,12 +64,11 @@ class SuppliersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_supplier
       @supplier = Supplier.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def supplier_params
       params.require(:supplier).permit(:description, :cnpj)
     end

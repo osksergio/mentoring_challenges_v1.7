@@ -4,11 +4,8 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    # filter by Title
     @books = Book.search(params[:search]) if (params[:search]) and (params[:search_type] == 'book_title')
-    # filter by Author's Name
     @books = Book.by_author_name(params[:search]) if (params[:search]) and (params[:search_type] == 'author_name')
-    # all...
     @books = Book.all unless params[:search]
   end
 
@@ -67,12 +64,11 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
+
+  def set_book
       @book = Book.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def book_params
       params.require(:book).permit(:title, :published_at, :author_id, :isbn)
     end
