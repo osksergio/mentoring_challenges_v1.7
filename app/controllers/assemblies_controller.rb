@@ -4,12 +4,7 @@ class AssembliesController < ApplicationController
   # GET /assemblies or /assemblies.json
   def index
     @assemblies = Assembly.all
-
-    # filter by ID
-    #@assemblies = Assembly.where("id = #{params[:id]}") if params[:id]
     @assemblies = @assemblies.where("id = #{params[:id]}") if params[:id]
-    # filter by Description
-    #@assemblies = Assembly.where("description = #{params[:description]}") if params[:description]
     @assemblies = @assemblies.where("description = #{params[:description]}") if params[:description]
   end
 
@@ -68,12 +63,10 @@ class AssembliesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_assembly
       @assembly = Assembly.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def assembly_params
       params.require(:assembly).permit(:description)
     end

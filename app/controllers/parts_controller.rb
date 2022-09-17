@@ -5,18 +5,9 @@ class PartsController < ApplicationController
   # GET /parts or /parts.json
   def index
     @parts = Part.all
-
-    # filter by ID
-    #@parts = Part.where("id = #{params[:id]}") if params[:id]
     @parts = @parts.where("id = #{params[:id]}") if params[:id]
-    # filter by Description
-    #@parts = Part.where("description = #{params[:description]}") if params[:description]
     @parts = @parts.where("description = #{params[:description]}") if params[:description]
-    # filter by Part Number
-    #@parts = Part.where("part_number = #{params[:part_number]}") if params[:part_number]
     @parts = @parts.where("part_number = #{params[:part_number]}") if params[:part_number]
-    # filter by Supplier ID
-    #@parts = Part.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
     @parts = @parts.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
   end
 
@@ -75,12 +66,11 @@ class PartsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_part
       @part = Part.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def part_params
       params.require(:part).permit(:description, :part_number, :supplier_id, :price)
     end
