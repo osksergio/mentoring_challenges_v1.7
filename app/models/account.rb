@@ -7,8 +7,7 @@ class Account < ApplicationRecord
   private
 
   def account_digit_is_valid?
-    errors.add(:digit, "Dígito verificador inválido! Por favor, verifique os dados.") unless CHECKDIG.check_digit?(account_number, digit)
+    d = CheckAccountDigit.new(account_number, digit)
+    errors.add(:digit, "Dígito verificador inválido! Por favor, verifique os dados.") unless d.check_digit?
   end
 end
-
-
