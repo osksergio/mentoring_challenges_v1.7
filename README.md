@@ -16,7 +16,7 @@ Alguns requisitos técnicos do projeto:
 
 ----
 
-### 1 - Implementar o CRUDs
+### 1 - Implementar os CRUDs
 - Cadastrar Autores
 - Cadastrar Livros vinculando com Autor
 - Cadastrar Fornecedores com uma Conta
