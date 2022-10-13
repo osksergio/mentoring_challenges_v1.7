@@ -3,8 +3,11 @@ class Account < ApplicationRecord
   validates :account_number, presence: true
   validates :account_number, uniqueness: true
   validate :account_digit_is_valid?
-end
 
-def account_digit_is_valid?
-  errors.add(:digit, "Dígito verificador inválido! Por favor, verifique os dados.") unless CHECKDIG.check_digit?(account_number, digit)
+  private
+
+  def account_digit_is_valid?
+    d = CheckAccountDigit.new(account_number, digit)
+    errors.add(:digit, "Dígito verificador inválido! Por favor, verifique os dados.") unless d.check_digit?
+  end
 end

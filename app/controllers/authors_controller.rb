@@ -1,16 +1,11 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: %i[ show edit update destroy ]
-  skip_before_action :verify_authenticity_token # utilizado para não trabalhar com autenticação dentro do Postman!
+  skip_before_action :verify_authenticity_token
 
   # GET /authors or /authors.json
   def index
     @authors = Author.all
-
-    # filter by ID
-    #@authors = Author.where("id = #{params[:id]}") if params[:id]
     @authors = @authors.where("id = #{params[:id]}") if params[:id]
-    # filter by Description (full name)
-    #@authors = Author.where("description = #{params[:description]}") if params[:description]
     @authors = @authors.where("description = #{params[:description]}") if params[:description]
   end
 
@@ -70,12 +65,11 @@ class AuthorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_author
       @author = Author.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def author_params
       params.require(:author).permit(:description, :cpf)
     end

@@ -5,15 +5,8 @@ class AccountsController < ApplicationController
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.all
-
-    # filter by ID
-    #@accounts = Account.where("id = #{params[:id]}") if params[:id]
     @accounts = @accounts.where("id = #{params[:id]}") if params[:id]
-    # filter by Number Account
-    #@accounts = Account.where("account_number = #{params[:account_number]}") if params[:account_number]
     @accounts = @accounts.where("account_number = #{params[:account_number]}") if params[:account_number]
-    # filter by Supplier ID
-    #@accounts = Account.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
     @accounts = @accounts.where("supplier_id = #{params[:supplier_id]}") if params[:supplier_id]
   end
 
@@ -72,12 +65,10 @@ class AccountsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_account
       @account = Account.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def account_params
       params.require(:account).permit(:account_number, :supplier_id, :digit)
     end
